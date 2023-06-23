@@ -330,9 +330,10 @@ Also we need to tell the second node how to connect to the first node.
 - Obtain the first node ENODE identifier
 
 ```sh
+# Get the node private key
 ∴ cat ~/.ethereum/geth/nodekey
 70211671c5185f74854b6a311c134eb4f2907809066bac75a71ec5fb45e3a41f
-12:50:59 ☸ gid.ninja (default) on  master [✘!?] dev/solitdity-development-course/private-net
+# Obtain public key from it
 ∴ bootnode --nodekeyhex 70211671c5185f74854b6a311c134eb4f2907809066bac75a71ec5fb45e3a41f --writeaddress
 66f1ff5949a5cedfae238ae27bb1e1aae46c13509b78c815a284273042b89d546b9361217c04dfd966cd1ad812e4b71a8c5e4e348457d1fa620fff881841f342
 # This last number is our ENODE id
