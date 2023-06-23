@@ -350,6 +350,8 @@ NFO [06-23|12:54:19.840] Looking for peers                        peercount=1 tr
 ..........
 ```
 
+NOTE: On windows you might need to add also **--ipcdisable** parameter if you get IPC error.
+
 ### 7.3 Connect with MetaMask
 
 - Open **MetaMask Settings**, and go to _Networks_
