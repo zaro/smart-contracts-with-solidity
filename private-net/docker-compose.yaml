@@ -1,0 +1,61 @@
+version: "3.8"
+
+services:
+  genesis:
+    env_file:
+        - config.env
+    environment:
+      - CONFIG_DIR=/node-data/
+      - DATA_DIR=/node-data/node1/
+      - DATA_DIR1=/node-data/node1/
+      - DATA_DIR2=/node-data/node2/
+    image: ethereum/client-go:alltools-v1.12.0
+    command: |
+      sh -c "
+      apk add envsubst;
+      /create-pool-account.sh;
+      /genesis.sh;
+      "
+    volumes:
+      - ./node-data:/node-data/
+      - ./genesis.json.envsubst:/genesis.json.envsubst
+      - ./bin/gethX:/usr/local/bin/gethX
+      - ./create-pool-account.sh:/create-pool-account.sh
+      - ./config.env:/config.env
+      - ./genesis.sh:/genesis.sh
+  node1:
+    env_file:
+        - config.env
+    environment:
+      - CONFIG_DIR=/node-data/
+      - DATA_DIR=/node-data/node1/
+    image: ethereum/client-go:alltools-v1.12.0
+    command: |
+      geth-node-X
+    volumes:
+      - ./node-data:/node-data/
+      - ./bin/gethX:/usr/local/bin/gethX
+      - ./bin/geth-node-X:/usr/local/bin/geth-node-X
+    depends_on:
+          genesis:
+            condition: service_completed_successfully
+  node2:
+    env_file:
+        - config.env
+    environment:
+      - CONFIG_DIR=/node-data/
+      - DATA_DIR=/node-data/node2/
+      - BOOTSTRAP_NODE=node1
+      - RPC_HTTP_ADDRESS=0.0.0.0
+    image: ethereum/client-go:alltools-v1.12.0
+    command: |
+      geth-node-X
+    volumes:
+      - ./node-data:/node-data/
+      - ./bin/gethX:/usr/local/bin/gethX
+      - ./bin/geth-node-X:/usr/local/bin/geth-node-X
+    ports:
+      - "8545:8545"
+    depends_on:
+          genesis:
+            condition: service_completed_successfully

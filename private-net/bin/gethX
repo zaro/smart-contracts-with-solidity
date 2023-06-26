@@ -1,0 +1,14 @@
+#!/bin/sh
+
+THIS_DIR=$(cd `dirname $0`; pwd)
+
+if [ -z "$DATA_DIR" ]; then
+  echo $0: DATA_DIR must be set before execution
+  exit 1
+fi
+
+[ -z "$CONFIG_DIR" ] && CONFIG_DIR="$THIS_DIR/../node-data/"
+
+[ -f "$CONFIG_DIR/config.env" ] && . $CONFIG_DIR/config.env
+
+exec geth --datadir=$DATA_DIR --networkid $CHAIN_ID "$@"

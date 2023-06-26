@@ -1,0 +1,12 @@
+#!/bin/sh
+
+THIS_DIR=$(cd `dirname $0`; pwd)
+
+[ -z "$DATA_DIR" ] && DATA_DIR=$(cd $THIS_DIR/..; pwd)/node-data/node2/
+
+[ -z "$CONFIG_DIR" ] && CONFIG_DIR="$THIS_DIR/../"
+
+export DATA_DIR
+export CONFIG_DIR
+
+exec $THIS_DIR/geth-dist/geth --datadir=$DATADIR --networkid $CHAIN_ID --port 30304 "$@"

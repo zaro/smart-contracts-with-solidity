@@ -1,0 +1,10 @@
+#!/bin/sh
+
+THIS_DIR=$(cd `dirname $0`; pwd)
+
+[ -z "$CONFIG_DIR" ] && CONFIG_DIR="$THIS_DIR/../node-data/"
+
+export CONFIG_DIR
+export DATA_DIR=$CONFIG_DIR/node1/
+
+exec $THIS_DIR/geth-node-X --authrpc.port 8551 "$@"

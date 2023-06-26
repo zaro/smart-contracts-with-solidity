@@ -1,0 +1,16 @@
+#!/bin/sh
+
+THIS_DIR=$(cd `dirname $0`; pwd)
+
+[ -z "$CONFIG_DIR" ] && CONFIG_DIR="$THIS_DIR/../node-data/"
+
+export CONFIG_DIR
+export DATA_DIR=$CONFIG_DIR/node2/
+
+
+export BOOTSTRAP_NODE=node1
+export BOOTSTRAP_NODE_IP="127.0.0.1"
+export RPC_HTTP_ADDRESS="0.0.0.0"
+
+# ADD for debug: --pcscdpath /dev/null --verbosity 4
+exec $THIS_DIR/geth-node-X --port 30304 --authrpc.port 8552 "$@"
