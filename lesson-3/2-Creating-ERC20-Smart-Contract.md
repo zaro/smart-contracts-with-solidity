@@ -114,7 +114,7 @@ At the time of creation, we will assign all the token supply to the contract own
 - Add a check in the test, that verifies that all the tokens are owned by the contract creator
 
 ```
-    expect(await myToken.balanceOf(owner)).to.equal(1000n * 10n ** 18n);
+    expect(await myToken.balanceOf(owner.address)).to.equal(1000n * 10n ** 18n);
 ```
 
 ## 5. Adding ability to transfer
@@ -130,6 +130,7 @@ Let's implement the transfer method.
 const tx = await myToken.transfer(addr1.address, 100n * 10n ** 18n);
 const rc = await tx.wait();
 const event = rc.events.find((event) => event.event === "Transfer");
+expect(event).to.have.property("event", "Transfer");
 expect(await myToken.balanceOf(addr1.address)).to.equal(100n * 10n ** 18n);
 expect(await myToken.balanceOf(owner.address)).to.equal(900n * 10n ** 18n);
 ```
