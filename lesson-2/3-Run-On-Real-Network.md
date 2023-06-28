@@ -8,6 +8,8 @@ It it is not available, you can use the docker compose setup in private-net dire
 
 ## 2. Deploy the contract from exercise 1
 
+- Open MetaMask Settings, go to Advanced , the find **Customize transaction nonce** and set it to **On**
+
 - Click on the **Connected** tab in your ChainIDE in the upper right corner, disconnect the JavascriptVM and connect your MetaMask wallet.
 
 - Deploy the smart contract and test by invoking the greet method.
