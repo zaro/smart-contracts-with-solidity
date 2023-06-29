@@ -252,3 +252,7 @@ Use the random function to get a price divider and multiplier to achieve differe
 ## 10. Improving the buy ticket test
 
 - Change the `Test buyTicket` test and make it similar to the `Win/Loose` test, so that it runs 20 times in a loop and check that we had both wins and loses.
+
+## 11. Add more entropy to our random() function
+
+- Let's add some state variable(s) that change when tickets are being bought, and feed them to the random() function
