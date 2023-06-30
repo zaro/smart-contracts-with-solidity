@@ -93,7 +93,7 @@ contract = new web3.eth.Contract(contractABI, contractAddress);
 ```
 
 - Replace the values of `contractABI` and `contractAddress` with their respective values
-  - `contractABI` should e set to the content of the `abi` key in our compiled contract JSON in the artifacts directory
+  - `contractABI` should be set to the content of the `abi` key in our compiled contract JSON in the artifacts directory
   - `contractAddress` should be set to the address which you got when deploying the the contract
 
 ## 4. Showing the prize pool of our lottery
@@ -167,3 +167,9 @@ Right now we only show the contract balance and it is updated only on page load.
 
 - Make sure you update the contract (prize pool) balance after each ticket bought
 - Add a second field displaying the player wallet balance and update it after each ticket bought
+
+## 8. Showing the number of tickets bought
+
+- Alter the smart contract , and add a counter counting how many tickets were sold (if it doesn't exists already)
+- Recompile and redeploy the contract
+- Show this counter below the balances and update it in a similar manner
