@@ -42,7 +42,7 @@ npm install serve
 - Start the server and check if the page is being shown
 
 ```sh
-npx server frontend/
+npx serve frontend/
 ```
 
 ## 2. Initializing the Web3 library
